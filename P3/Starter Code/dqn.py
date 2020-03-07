@@ -53,7 +53,7 @@ class QLearner(nn.Module):
             
             #------------------my code--------------------
             Q_Values = self.forward(state)
-            action = Q_Values.max(1)[1].data.numpy()[0]
+            action = Q_Values.max(1)[1].data.item()
             #---------------------------------------------
             
 
