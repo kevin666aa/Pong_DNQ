@@ -25,7 +25,7 @@ record_idx = 10000
 replay_initial = 10000
 replay_buffer = ReplayBuffer(100000)
 model = QLearner(env, num_frames, batch_size, gamma, replay_buffer)
-model.load_state_dict(torch.load("model_pretrained.pth", map_location='cpu'))
+model.load_state_dict(torch.load("model_trained_after_1000000_frames.pth", map_location='cpu'))
 
 target_model = QLearner(env, num_frames, batch_size, gamma, replay_buffer)
 target_model.copy_from(model)
@@ -87,22 +87,22 @@ for frame_idx in range(1, num_frames + 1):
         x_loss, y_loss = zip(*losses)
         x_rewards, y_rewards = zip(*all_rewards)
         print(str(frame_idx) + "'th iteration:")
-        x_loss = np.asarray(x_loss)
-        y_loss = np.asarray(y_loss)
-        x_rewards = np.asarray(x_rewards)
-        y_rewards = np.asarray(y_rewards)
+        #x_loss = np.asarray(x_loss)
+        #y_loss = np.asarray(y_loss)
+        #x_rewards = np.asarray(x_rewards)
+        #y_rewards = np.asarray(y_rewards)
         
-        with open("data/x_loss.txt", "a") as f:
-            np.savetxt(f, x_loss)
-        with open("data/y_loss.txt", "a") as f:
-            np.savetxt(f, y_loss)
-        with open("data/x_rewards.txt", "a") as f:
-            np.savetxt(f, x_rewards)
-        with open("data/y_rewards.txt", "a") as f:
-            np.savetxt(f, y_rewards)
-        print("        loss and rewards saved")
+        #with open("data/x_loss.txt", "a") as f:
+        #    np.savetxt(f, x_loss)
+        #with open("data/y_loss.txt", "a") as f:
+        #    np.savetxt(f, y_loss)
+        #with open("data/x_rewards.txt", "a") as f:
+        #    np.savetxt(f, x_rewards)
+        #with open("data/y_rewards.txt", "a") as f:
+        #    np.savetxt(f, y_rewards)
+        #print("        loss and rewards saved")
         
-        filename = "model_trained_after_" + str(frame_idx) + "_frames.pth"
+        filename = "model_onemillion+" + str(frame_idx) + "_frames.pth"
         torch.save(model.state_dict(), filename)
         print("        model saved")
         
