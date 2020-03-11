@@ -103,6 +103,7 @@ plt.ylabel('rewards')
 plt.scatter(x_rewards, y_rewards)
 fig.savefig("rewards.png")
 
+x_loss = np.flip(x_loss) # to be removed
 fig = plt.figure(figsize = (5, 5))
 plt.title('Scatter plot of Losses')
 plt.xlabel('frames')
